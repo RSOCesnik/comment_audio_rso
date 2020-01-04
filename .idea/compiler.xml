@@ -6,7 +6,7 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="lib" />
+        <module name="services" />
         <module name="image-comments-api" />
         <module name="models" />
       </profile>
@@ -16,6 +16,7 @@
       <module name="image-comments-api" target="1.8" />
       <module name="lib" target="1.8" />
       <module name="models" target="1.8" />
+      <module name="services" target="1.8" />
     </bytecodeTargetLevel>
   </component>
 </project>

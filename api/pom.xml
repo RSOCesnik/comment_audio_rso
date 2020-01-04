@@ -14,10 +14,24 @@
     <version>1.0.0-SNAPSHOT</version>
 
     <dependencies>
-
+        <dependency>
+            <groupId>si.fri.project</groupId>
+            <artifactId>image-comments-models</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>si.fri.project</groupId>
+            <artifactId>image-comments-services</artifactId>
+            <version>1.0.0-SNAPSHOT</version>
+        </dependency>
         <dependency>
             <groupId>com.kumuluz.ee</groupId>
             <artifactId>kumuluzee-core</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.kumuluz.ee.discovery</groupId>
+            <artifactId>kumuluzee-discovery-etcd</artifactId>
+            <version>${kumuluzee-discovery.version}</version>
         </dependency>
         <dependency>
             <groupId>com.kumuluz.ee</groupId>
@@ -32,8 +46,9 @@
             <artifactId>kumuluzee-json-p-jsonp</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.kumuluz.ee</groupId>
-            <artifactId>kumuluzee-cdi-weld</artifactId>
+            <groupId>com.kumuluz.ee.logs</groupId>
+            <artifactId>kumuluzee-logs-log4j2</artifactId>
+            <version>${kumuluzee-logs.version}</version>
         </dependency>
         <dependency>
             <groupId>com.kumuluz.ee</groupId>

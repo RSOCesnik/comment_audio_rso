@@ -1,0 +1,52 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-comments-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-comments
+  template:
+    metadata:
+      labels:
+        app: image-comments
+    spec:
+      containers:
+      - image: bcesnik/rso-image-comments:1.0.0-SNAPSHOT-2.1
+        name: image-comments
+        env:
+          - name: KUMULUZEE_DISCOVERY_CLUSTER
+            value: gcloud
+          - name: KUMULUZEE_DISCOVERY_ETCD_HOSTS
+            value: http://etcd:2379
+          - name: KUMULUZEE_CONFIG_ETCD_HOSTS
+            value: http://etcd:2379
+          - name: KUMULUZEE_SERVER_BASEURL
+            value: http://image-catalog-service:8083
+          - name: KUMULUZEE_DATASOURCES0_CONNECTIONURL
+            value: jdbc:postgresql://35.205.56.107:5432/images_db
+          - name: KUMULUZEE_DATASOURCES0_USERNAME
+            value: postgres
+          - name: KUMULUZEE_DATASOURCES0_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: db-password
+                key: KUMULUZEE_DATASOURCES0_PASSWORD
+        ports:
+        - containerPort: 8082
+          name: server
+          protocol: TCP
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-comments
+spec:
+  type: NodePort
+  ports:
+  - port: 8082
+    protocol: TCP
+    targetPort: 8082
+  selector:
+    app: image-comments

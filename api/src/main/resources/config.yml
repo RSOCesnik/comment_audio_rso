@@ -14,3 +14,50 @@ kumuluzee:
       password: adminadmin
       pool:
         max-size: 20
+  config:
+    etcd:
+      hosts: http://localhost:2379
+  discovery:
+    etcd:
+      hosts: http://localhost:2379
+  logs:
+    config-file:
+      '<?xml version="1.0" encoding="UTF-8"?>
+           <Configuration name="tutorial-logging">
+               <Appenders>
+                   <Console name="console" target="SYSTEM_OUT">
+                       <PatternLayout pattern="%d %p %marker %m %X %ex %n"/>
+                   </Console>
+
+                   <Socket name="logstash" host="dcbcb4f6-088e-4793-9456-47eced0cec3b-ls.logit.io" port="11639" protocol="tcp">
+                      <JSONLayout complete="false" compact="true" eventEol="true" charset="UTF-8" properties="true"/>
+                   </Socket>
+
+               </Appenders>
+               <Loggers>
+                   <!-- Default logger -->
+                   <Root level="all">
+                       <AppenderRef ref="console" level="info"/>
+                       <AppenderRef ref="logstash" level="trace"/>
+                   </Root>
+               </Loggers>
+           </Configuration>'
+  health:
+    servlet:
+      mapping: /health
+      enabled: true
+    checks:
+      data-source-health-check:
+        jndi-name: jdbc/CommentsDS
+      etcd-health-check:
+        connection-url: http://localhost:2379/health
+      http-health-check:
+        - connection-url: http://localhost:8083/v1/catalog
+  metrics:
+    servlet:
+      enabled: true
+      mapping: /metrics
+    web-instrumentation:
+      - name: comments-endpoint
+        url-pattern: /v1/comments/*
+        status-codes: "200, 404, 500"

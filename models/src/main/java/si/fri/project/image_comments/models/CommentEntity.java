@@ -6,44 +6,47 @@ import java.util.List;
 @Entity(name = "comments")
 @NamedQueries(value =
         {
-                @NamedQuery(name = "CommentEntity.getAll", query = "SELECT p FROM comments p")
+                @NamedQuery(name = "CommentEntity.getAll", query = "SELECT p FROM comments p"),
+                @NamedQuery(name="CommentEntity.findByImage",
+                        query="SELECT c FROM comments c WHERE c.imageId = :imgId"),
         }
 )
 public class CommentEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer comment_id;
+    @Column(name = "comment_id")
+    private Integer commentId;
 
     @Column(name = "image_id")
-    private String image_id;
+    private Integer imageId;
 
     @Column(name = "comment_data")
-    private Integer comment_data;
+    private String commentData;
 
 
     public Integer getId() {
-        return comment_id;
+        return commentId;
     }
 
     public void setId(Integer id) {
-        this.comment_id = id;
+        this.commentId = id;
     }
 
-    public String getImageId() {
-        return image_id;
+    public Integer getImageId() {
+        return imageId;
     }
 
-    public void setImageId(String image_id) {
-        this.image_id = image_id;
+    public void setImageId(Integer image_id) {
+        this.imageId = image_id;
     }
 
-    public Integer getCommentData() {
-        return comment_data;
+    public String getCommentData() {
+        return commentData;
     }
 
-    public void setCommentData(Integer comment_data) {
-        this.comment_data = comment_data;
+    public void setCommentData(String comment_data) {
+        this.commentData = comment_data;
     }
 
 

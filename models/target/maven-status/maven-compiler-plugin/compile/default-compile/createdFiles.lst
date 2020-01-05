@@ -1,1 +1,3 @@
 si/fri/project/image_comments/models/CommentEntity.class
+si/fri/project/image_comments/models/ImageDto.class
+si/fri/project/image_comments/models/ImagePlusComment.class

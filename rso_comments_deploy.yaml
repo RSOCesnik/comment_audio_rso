@@ -13,7 +13,7 @@ spec:
         app: image-comments
     spec:
       containers:
-      - image: bcesnik/rso-image-comments:1.0.0-SNAPSHOT-5.1
+      - image: bcesnik/rso-image-comments:1.0.0-SNAPSHOT-6.1
         name: image-comments
         env:
           - name: KUMULUZEE_DISCOVERY_CLUSTER

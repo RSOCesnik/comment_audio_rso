@@ -99,7 +99,7 @@ public class CommentBean {
 
         if (baseUrl.isPresent()) {
 
-            log.info("Calling Images service: getting all images.");
+            log.info("Calling Images service: get image.");
 
             try {
                 return httpClient

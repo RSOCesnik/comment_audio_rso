@@ -28,10 +28,13 @@ public class ImageCommentsResource {
     private CommentBean commentBean;
 
     @GET
-    public Response getComments() {
 
-        return Response.ok("COMMENTS").build();
+    public Response getComments() {
+        List<CommentEntity> comments = commentBean.getComments(uriInfo);
+
+        return Response.ok(comments).build();
     }
+
     @GET
     @Path("/image/{imageId}")
     public Response getImages(@PathParam("imageId") Integer imageId) {

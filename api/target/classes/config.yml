@@ -16,10 +16,10 @@ kumuluzee:
         max-size: 20
   config:
     etcd:
-      hosts: http://etcd:2379
+      hosts: http://localhost:2379
   discovery:
     etcd:
-      hosts: http://etcd:2379
+      hosts: http://localhost:2379
   logs:
     config-file:
       '<?xml version="1.0" encoding="UTF-8"?>
@@ -50,9 +50,10 @@ kumuluzee:
       data-source-health-check:
         jndi-name: jdbc/CommentsDS
       etcd-health-check:
-        connection-url: http://etcd:2379/health
+        connection-url: http://localhost:2379/health
       http-health-check:
-        connection-url: http://image-catalog:8083/v1/catalog
+  #        connection-url: http://image-catalog:8083/v1/catalog
+          connection-url: http://localhost:8083/v1/catalog
   metrics:
     servlet:
       enabled: true

@@ -1,4 +1,4 @@
-package si.fri.project.image_comments.api.v1;
+package si.fri.project.image_comments.api.v1.interceptors;
 
 import com.kumuluz.ee.common.config.EeConfig;
 import com.kumuluz.ee.common.runtime.EeRuntime;

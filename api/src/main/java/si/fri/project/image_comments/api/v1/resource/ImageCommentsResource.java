@@ -7,6 +7,7 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
+import java.util.logging.Logger;
 
 import com.kumuluz.ee.logs.cdi.Log;
 import si.fri.project.image_comments.models.ImageDto;
@@ -26,9 +27,9 @@ public class ImageCommentsResource {
 
     @Inject
     private CommentBean commentBean;
+    private Logger log = Logger.getLogger(ImageCommentsResource.class.getName());
 
     @GET
-
     public Response getComments() {
         List<CommentEntity> comments = commentBean.getComments(uriInfo);
 
@@ -48,13 +49,15 @@ public class ImageCommentsResource {
     }
 
     @POST
-    @Path("/add/{imageId}")
-    public Response addComment(@PathParam("imageId") Integer imageId,CommentEntity comment) {
+    @Path("/add")
+    public Response addComment(CommentEntity comment) {
+        log.info(comment.getCommentData());
+        log.info(String.valueOf(comment.getImageId()));
+//        return Response.status(Response.Status.OK).entity(comment).build();
 
-        if (comment.getCommentData() == null) {
+        if (comment.getCommentData() == null || comment.getImageId() == null) {
             return Response.status(Response.Status.BAD_REQUEST).build();
         } else {
-            comment.setImageId(imageId);
             comment = commentBean.makeComment(comment);
         }
         if (comment.getId() != null) {
@@ -63,6 +66,20 @@ public class ImageCommentsResource {
             return Response.status(Response.Status.CONFLICT).entity(comment).build();
         }
     }
+
+    @DELETE
+    @Path("/delete/{commentId}")
+    public Response deleteCustomer(@PathParam("commentId") Integer commentId) {
+
+        boolean deleted = commentBean.deleteComment(commentId);
+
+        if (deleted) {
+            return Response.status(Response.Status.GONE).build();
+        } else {
+            return Response.status(Response.Status.NOT_FOUND).build();
+        }
+    }
+
 
     @GET
     @Path("/{imageId}")

@@ -31,6 +31,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.logging.Logger;
 
+
 @ApplicationScoped
 public class CommentBean {
 
@@ -115,7 +116,7 @@ public class CommentBean {
     }
 
     public ImageDto getImageFallback(Integer userId) {
-        return new ImageDto();
+        return null;
     }
 
 
@@ -131,6 +132,23 @@ public class CommentBean {
             rollbackTx();
         }
         return comment;
+    }
+
+    public boolean deleteComment(Integer commentId) {
+        CommentEntity photo = em.find(CommentEntity.class, commentId);
+
+        if(photo != null) {
+            try {
+                beginTx();
+                em.remove(photo);
+                commitTx();
+            } catch (Exception e) {
+                rollbackTx();
+            }
+        } else {
+            return false;
+        }
+        return true;
     }
     private void beginTx() {
         if (!em.getTransaction().isActive())

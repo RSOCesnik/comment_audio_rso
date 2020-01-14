@@ -16,10 +16,10 @@ kumuluzee:
         max-size: 20
   config:
     etcd:
-      hosts: http://etcd:2379
+      hosts: http://localhost:2379
   discovery:
     etcd:
-      hosts: http://etcd:2379
+      hosts: http://localhost:2379
   logs:
     config-file:
       '<?xml version="1.0" encoding="UTF-8"?>

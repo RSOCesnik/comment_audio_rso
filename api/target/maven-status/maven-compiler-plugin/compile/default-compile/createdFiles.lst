@@ -1,3 +1,5 @@
 si/fri/project/image_comments/api/v1/interceptors/LogContextInterceptor.class
-si/fri/project/image_comments/api/v1/ImageCommentsApplication.class
+si/fri/project/image_comments/api/v1/CommentsGraph.class
 si/fri/project/image_comments/api/v1/resource/ImageCommentsResource.class
+META-INF/kumuluzee/graphql/java.lang.Object
+si/fri/project/image_comments/api/v1/ImageCommentsApplication.class

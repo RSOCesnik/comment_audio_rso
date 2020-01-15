@@ -49,13 +49,13 @@ public class CommentBean {
         httpClient = ClientBuilder.newClient();
     }
 
-    public List<CommentEntity> getComments(UriInfo uriInfo) {
+    public List<CommentEntity> getComments() {
 
-        QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery())
-                .defaultOffset(0)
-                .build();
+//        QueryParameters queryParameters = QueryParameters.query(uriInfo.getRequestUri().getQuery())
+//                .defaultOffset(0)
+//                .build();
 
-        return JPAUtils.queryEntities(em, CommentEntity.class, queryParameters);
+        return JPAUtils.queryEntities(em, CommentEntity.class);
 
     }
     public CommentEntity getComment(Integer commentId) {

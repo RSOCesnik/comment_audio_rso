@@ -31,7 +31,7 @@ public class ImageCommentsResource {
 
     @GET
     public Response getComments() {
-        List<CommentEntity> comments = commentBean.getComments(uriInfo);
+        List<CommentEntity> comments = commentBean.getComments();
 
         return Response.ok(comments).build();
     }
@@ -47,6 +47,8 @@ public class ImageCommentsResource {
 
         return Response.ok(comments).build();
     }
+
+
 
     @POST
     @Path("/add")

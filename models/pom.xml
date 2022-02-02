@@ -10,7 +10,7 @@
         <version>1.0.0-SNAPSHOT</version>
     </parent>
     <properties>
-        <postgresql.version>42.2.5</postgresql.version>
+        <postgresql.version>42.2.25</postgresql.version>
     </properties>
     <artifactId>image-comments-models</artifactId>
     <version>1.0.0-SNAPSHOT</version>
